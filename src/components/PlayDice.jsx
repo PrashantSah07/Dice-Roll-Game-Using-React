@@ -16,7 +16,7 @@ const PlayDice = ({ diceShow, setDiceShow, setRollShow }) => {
                 </div>
                 <div className='flex flex-col items-end gap-4'>
                     <h1 className='text-8xl font-semibold'>DICE GAME</h1>
-                    <button className='bg-black text-white px-6 py-1 rounded-lg text-ms'
+                    <button className='bg-black text-white px-6 py-1 rounded-lg text-ms hover:bg-white hover:text-black border-2 border-black transition duration-300'
                         onClick={() => {
                             setDiceShow(false);
                             setRollShow(true);

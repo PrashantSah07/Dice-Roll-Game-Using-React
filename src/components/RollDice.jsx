@@ -63,8 +63,8 @@ const RollDice = ({ rollShow, setRollShow, setDiceShow }) => {
                     />
                 </div>
                 <p>Click on Dice to roll</p>
-                <button className='border-2 px-6 rounded-lg text-ms py-0.5' onClick={() => setScore(0)}>Reset Score</button>
-                <button className='bg-black text-white px-6 py-1 rounded-lg text-ms' onClick={function () {
+                <button className='border-2 px-6 rounded-lg text-ms py-0.5 hover:bg-black hover:text-white border-black transition duration-200' onClick={() => setScore(0)}>Reset Score</button>
+                <button className='bg-black text-white px-6 py-1 rounded-lg text-ms hover:bg-white hover:text-black border-2 border-black transition duration-200' onClick={function () {
                     setShowRule(!showRule)
                 }} >{showRule ? 'Hide Rule' : 'Show Rule'}
                 </button>
@@ -87,7 +87,7 @@ const RollDice = ({ rollShow, setRollShow, setDiceShow }) => {
 
             }
             <div className={`ml-10 mt-10 mb-10`}>
-                <button className='bg-red-600 text-white px-6 py-1 rounded-lg' onClick={function () {
+                <button className='bg-red-600 text-white px-6 py-1 rounded-lg border-2 border-red-600 hover:bg-white hover:text-red-600 transition duration-200' onClick={function () {
                     setRollShow(false);
                     setDiceShow(true);
                 }}>Quit Game</button>
