@@ -6,6 +6,10 @@ import dice_3 from '../assets/dice_3.png'
 import dice_4 from '../assets/dice_4.png'
 import dice_5 from '../assets/dice_5.png'
 import dice_6 from '../assets/dice_6.png'
+import rollingDiceSoundEffect from '../assets/Sound Effects/rolling-dice.mp3'
+import winningSoundEffect from '../assets/Sound Effects/win.mp3'
+import loosingSoundEffect from '../assets/Sound Effects/loose.mp3'
+import clickingSoundEffect from '../assets/Sound Effects/clicking.mp3'
 
 const diceImages = [dice_1, dice_2, dice_3, dice_4, dice_5, dice_6];
 
@@ -21,6 +25,27 @@ const RollDice = ({ rollShow, setRollShow, setDiceShow }) => {
         return
     }
 
+    function playRolling() {
+        const audio = new Audio(rollingDiceSoundEffect);
+        audio.play();
+    }
+
+    function playWin() {
+        const audio = new Audio(winningSoundEffect);
+        audio.play();
+    }
+
+    function playloose() {
+        const audio = new Audio(loosingSoundEffect);
+        audio.play();
+    }
+
+    function playClickSound() {
+        const audio = new Audio(clickingSoundEffect);
+        audio.play();
+    }
+
+
     return (
         <>
             <div className='select-number flex justify-between mx-14 my-10'>
@@ -32,6 +57,7 @@ const RollDice = ({ rollShow, setRollShow, setDiceShow }) => {
                     <div className='flex gap-3'>
                         {[1, 2, 3, 4, 5, 6].map((num) => (
                             <button key={num} className={`border-2 px-3 py-1.5 font-bold ${active === num ? "bg-black text-white" : "bg-gray-200"}`} onClick={function () {
+                                playClickSound();
                                 setActive(num)
                                 setError(false);
                             }}>{num}
@@ -50,12 +76,19 @@ const RollDice = ({ rollShow, setRollShow, setDiceShow }) => {
                                 setError(true);
                                 return;
                             }
+
+                            playRolling();
+
                             let computerValue = Math.floor(Math.random() * 6) + 1;
                             setRolledValue(computerValue);
 
                             if (computerValue === active) {
+                                setTimeout(() => {
+                                    playWin();
+                                }, 500);
                                 setScore(prevScore => prevScore + active);
                             } else {
+                                playloose();
                                 setScore(prevScore => prevScore - 2);
                             }
                             setActive(null);
@@ -63,8 +96,12 @@ const RollDice = ({ rollShow, setRollShow, setDiceShow }) => {
                     />
                 </div>
                 <p>Click on Dice to roll</p>
-                <button className='border-2 px-6 rounded-lg text-ms py-0.5 hover:bg-black hover:text-white border-black transition duration-200' onClick={() => setScore(0)}>Reset Score</button>
+                <button className='border-2 px-6 rounded-lg text-ms py-0.5 hover:bg-black hover:text-white border-black transition duration-200' onClick={function () {
+                    playClickSound();
+                    setScore(0);
+                }}>Reset Score</button>
                 <button className='bg-black text-white px-6 py-1 rounded-lg text-ms hover:bg-white hover:text-black border-2 border-black transition duration-200' onClick={function () {
+                    playClickSound();
                     setShowRule(!showRule)
                 }} >{showRule ? 'Hide Rule' : 'Show Rule'}
                 </button>
@@ -88,6 +125,7 @@ const RollDice = ({ rollShow, setRollShow, setDiceShow }) => {
             }
             <div className={`ml-10 mt-10 mb-10`}>
                 <button className='bg-red-600 text-white px-6 py-1 rounded-lg border-2 border-red-600 hover:bg-white hover:text-red-600 transition duration-200' onClick={function () {
+                    playClickSound();
                     setRollShow(false);
                     setDiceShow(true);
                 }}>Quit Game</button>
