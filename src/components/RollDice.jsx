@@ -84,7 +84,14 @@ const RollDice = ({ rollShow, setRollShow, setDiceShow }) => {
 
                     </div>
                 </div>
+
             }
+            <div className={`ml-10 mt-10 mb-10`}>
+                <button className='bg-red-600 text-white px-6 py-1 rounded-lg' onClick={function () {
+                    setRollShow(false);
+                    setDiceShow(true);
+                }}>Quit Game</button>
+            </div>
         </>
     )
 }

@@ -11,7 +11,7 @@ const App = () => {
     return (
         <div>
             <PlayDice diceShow={diceShow} setDiceShow={setDiceShow} setRollShow={setRollShow} />
-            <RollDice rollShow={rollShow} setRollShow={setRollShow} />
+            <RollDice rollShow={rollShow} setRollShow={setRollShow} setDiceShow={setDiceShow} />
         </div>
     )
 }
